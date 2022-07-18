@@ -22,8 +22,9 @@ public class AbsencesRepository {
         NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(new DriverManagerDataSource
                 ("jdbc:postgresql://localhost:1234/postgres", "user", "pass"));
 
-        jdbcTemplate.update("INSERT INTO absences VALUES (:id, :userId, :absenceTypeId, :absenceStart, " +
-                ":absenceEnd, :description)", Map.of(
+        jdbcTemplate.update("INSERT INTO absences(id, user_id, absence_type_id, absence_start, absence_end, description) " +
+                "VALUES (:id, :userId, :absenceTypeId, TO_DATE(:absenceStart, YYYY-MM-DD), " +
+                "TO_DATE(:absenceEnd, YYYY-MM-DD),:description)", Map.of(
                 "id", UUID.randomUUID(),
                 "userId", absenceLine.getUserId(),
                 "absenceTypeId", UUID.fromString(absenceLine.getType()),
