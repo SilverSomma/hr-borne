@@ -85,3 +85,14 @@ INSERT INTO users VALUES (
                           true
                          );
 
+--changeset hrborne:180720221616
+
+INSERT INTO absences VALUES (
+                             'd62ac15e-c96b-4309-b88e-a1841d5a372f',
+                             '3488884c-120b-4542-8179-4d0c7194f24c',
+                             '28d1111a-e42c-418f-9253-3c509839ce3c',
+                             '07-17-2022',
+                             '07-20-2022',
+                             'Tootan kodus'
+                            )
+

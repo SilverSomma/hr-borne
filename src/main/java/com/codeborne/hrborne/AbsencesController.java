@@ -11,9 +11,16 @@ public class AbsencesController {
 
     @Resource
     UserRepository userRepository;
+    @Resource
+    AbsenceRepository absenceRepository;
 
     @GetMapping("/names")
     public List<Name> getAllNames() {
         return userRepository.getAllNames();
+    }
+
+    @GetMapping("/absences")
+    public List<AbsenceLine> getAllAbsences() {
+        return absenceRepository.getAllAbsences();
     }
 }

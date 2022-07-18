@@ -7,9 +7,12 @@ import java.util.UUID;
 
 @Value
 public class AbsenceLine {
+    UUID id;
     UUID userId;
-    String type;
-    Date start;
-    Date end;
-    String description;
+    Date absenceStart;
+    Date absenceEnd;
+    String absenceDescription;
+    String absenceType;
+    String absenceTypeDescription;
+
 }
