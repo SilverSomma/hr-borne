@@ -2,6 +2,7 @@ package com.codeborne.hrborne;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -14,6 +15,8 @@ public class AbsencesController {
     UserRepository userRepository;
     @Resource
     AbsenceRepository absenceRepository;
+    @Resource
+    AbsencesRepository absencesRepository;
 
     @GetMapping("/names")
     @CrossOrigin(origins = "http://localhost:8081")
@@ -25,5 +28,10 @@ public class AbsencesController {
     @CrossOrigin(origins = "http://localhost:8081")
     public List<AbsenceLine> getAllAbsences() {
         return absenceRepository.getAllAbsences();
+    }
+
+    @PutMapping
+    public void saveAbsence (Absences absences ) {
+        absencesRepository.saveAbsence(absences);
     }
 }
