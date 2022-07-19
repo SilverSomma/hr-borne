@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="logIn()">LOG IN</button>
+    <button id="logInButton" type="button" v-on:click="logIn" class="btn btn-primary">Log In</button>
   </div>
 </template>
 
@@ -19,10 +19,10 @@ export default {
 
 <style scoped>
 button{
-  width: 20vw;
-  height: 7vh;
-  margin-left: 40vw;
+  width: 10vw;
+  height: 5vh;
+  margin-left: 45vw;
   margin-top: 45vh;
-  font-size: 4em;
+  font-size: 2em;
 }
 </style>
