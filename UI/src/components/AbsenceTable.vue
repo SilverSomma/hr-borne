@@ -1,20 +1,21 @@
 <template xmlns:v="http://www.w3.org/1999/xhtml">
-  <table class="table table-dark table-hover">
-    <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col"></th>
-<!--      <th v-for="date in tableDates" scope="col"> {{date.date}} {{date.day}}</th>-->
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="name in names">
-      <th>{{ name.firstName }} {{ name.lastName }}</th>
-      <td v-for="date in tableDates"> {{date.date}} {{date.day}}</td>
+  <div>
+    <table class="table table-dark table-hover">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th v-for="date in tableDates" scope="col"> {{ date.date }} {{ date.day }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="name in names">
+        <th>{{ name.firstName }} {{ name.lastName }}</th>
 
-    </tr>
-    </tbody>
-  </table>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -24,12 +25,7 @@ export default {
     return {
       names: {},
       absences: {},
-      tableDates: [{
-        day:"",
-        date:"",
-        month:"",
-        year:"",
-      }]
+      tableDates: []
     }
   },
   methods: {
@@ -55,17 +51,17 @@ export default {
       let day = date.substring(8, 10)
       return new Date(year, month, day);
     },
-    createTableDates: function (minDate,maxDate) {
+    createTableDates: function (minDate, maxDate) {
       const diffTime = Math.abs(maxDate - minDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       for (let i = 0; i < diffDays; i++) {
         let newDate = new Date();
         newDate.setDate(minDate.getDate() + i)
         this.tableDates.push({
-          day:newDate.toLocaleDateString(undefined,{weekday:"short"}),
-          date:newDate.getDate(),
-          month:newDate.toLocaleDateString(undefined,{month:"long"}),
-          year:newDate.getFullYear()
+          day: newDate.toLocaleDateString(undefined, {weekday: "short"}),
+          date: newDate.getDate(),
+          month: newDate.toLocaleDateString(undefined, {month: "long"}),
+          year: newDate.getFullYear()
         })
       }
       console.log(this.tableDates);
@@ -85,9 +81,9 @@ export default {
         }
       }
 
-      minDate.setDate(minDate.getDate()-4);
-      maxDate.setDate(maxDate.getDate()+14);
-      this.tableDates = this.createTableDates(minDate,maxDate);
+      minDate.setDate(minDate.getDate() - 4);
+      maxDate.setDate(maxDate.getDate() + 14);
+      this.createTableDates(minDate, maxDate);
     },
   },
   created() {
