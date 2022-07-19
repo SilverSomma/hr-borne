@@ -32,6 +32,6 @@ public class AbsencesController {
 
     @PutMapping
     public void saveAbsence (Absences absences ) {
-        absencesRepository.saveAbsence(absences);
+        AbsencesRepository.saveAbsence(absences);
     }
 }
