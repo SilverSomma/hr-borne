@@ -29,7 +29,7 @@ class AbsenceRepositoryTest {
                 UUID.fromString("1d43f346-1876-4686-8d0c-6dc486066c5e"), dateStart, dateEnd,
                 "this is very important line");
         int rowsNumberBefore = jdbc.queryForObject("SELECT COUNT(*) FROM absences", Integer.class);
-        AbsencesRepository.saveAbsence(absence);
+        AbsenceRepository.saveAbsence(absence);
         int rowsNumberAfter= jdbc.queryForObject("SELECT COUNT(*) FROM absences", Integer.class);
         assertEquals(rowsNumberBefore+1, rowsNumberAfter);
     }
