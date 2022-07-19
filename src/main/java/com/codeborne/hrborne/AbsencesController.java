@@ -21,7 +21,7 @@ public class AbsencesController {
     }
 
     @PutMapping
-    public void saveAbsence (AbsenceLine absenceLine ) {
-        absencesRepository.saveAbsence(absenceLine);
+    public void saveAbsence (Absences absences ) {
+        absencesRepository.saveAbsence(absences);
     }
 }
