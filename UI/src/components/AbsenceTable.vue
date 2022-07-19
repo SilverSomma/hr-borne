@@ -1,17 +1,19 @@
 <template xmlns:v="http://www.w3.org/1999/xhtml">
   <div>
-    <table class="table table-dark table-hover">
+    <table class="table table-dark table-hover table-bordered">
       <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col"></th>
-        <th v-for="date in tableDates" scope="col"> {{ date.date }} {{ date.day }}</th>
+        <th style="width: 50px;" v-for="date in tableDates" scope="col"><h4>{{ date.date }}</h4> <h5>{{ date.day }}</h5>
+        </th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="name in names">
-        <th>{{ name.firstName }} {{ name.lastName }}</th>
-
+        <th style="width: 150px; height: 50px">{{ name.firstName }} {{ name.lastName }}</th>
+        <td style="width: 50px; height: 50px" v-for="date in tableDates">
+          <div class="color" v-show="hasAbsences(date, name.id)"></div>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -19,6 +21,7 @@
 </template>
 
 <script>
+
 export default {
   name: "AbsenceTable",
   data() {
@@ -64,7 +67,6 @@ export default {
           year: newDate.getFullYear()
         })
       }
-      console.log(this.tableDates);
     },
     getTableDates: async function (data) {
       let minDate = Number.MAX_VALUE;
@@ -85,6 +87,19 @@ export default {
       maxDate.setDate(maxDate.getDate() + 14);
       this.createTableDates(minDate, maxDate);
     },
+    getMonthFromString: function (mon) {
+      return new Date(Date.parse(mon + " 1, 2012")).getMonth()
+    },
+    hasAbsences: function (date, id) {
+      for (let absence of this.absences) {
+        let startDate = this.parseDate(absence.absenceStart);
+        let endDate = this.parseDate(absence.absenceEnd);
+
+        date = new Date(date.year, this.getMonthFromString(date.month), date.date);
+
+        return startDate.valueOf() <= date.valueOf() && endDate.valueOf() >= date.valueOf() && absence.userId === id;
+      }
+    },
   },
   created() {
     this.getAllNames()
@@ -94,5 +109,23 @@ export default {
 </script>
 
 <style scoped>
+
+.color {
+  color: aquamarine;
+  background-color: aquamarine;
+  min-height: 100%;
+  min-width: 100%;
+
+}
+
+td {
+  margin: 0;
+  padding: 0;
+}
+
+th {
+  margin: 0;
+  padding: 0;
+}
 
 </style>
