@@ -10,6 +10,7 @@
     "axios": "^0.26.1",
     "vue": "^2.6.14",
     "vue-axios": "^3.4.1",
+    "vue-google-oauth2": "^1.5.8",
     "vue-google-signin-button": "^1.0.4",
     "vue-router": "^3.5.1"
   },
