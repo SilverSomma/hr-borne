@@ -96,5 +96,16 @@ INSERT INTO absences VALUES (
                              'Tootan kodus'
                             );
 
+--changeset hrborne:200720221008
+
+INSERT INTO absences VALUES (
+                             'd2226728-710b-4cc0-8465-3085fb84bd6b',
+                             '4d5107b0-755c-4750-97df-112eac0d0ff1',
+                             'b8f0357a-da3c-4ef4-b19b-8b2f046a5a59',
+                             '09-01-2022',
+                             '09-06-2022',
+                             'Meeting with clients'
+                            );
+
 
 
