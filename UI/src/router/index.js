@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AbsenceView from "@/views/AbsenceView";
 import LoginView from "@/views/LoginView";
-import NewAbsenceView from "@/views/NewAbsenceView";
+import NewAbsenceModal from "@/views/NewAbsenceModal";
 
 Vue.use(VueRouter)
 
@@ -19,8 +19,8 @@ const routes = [
   },
   {
     path:'/newAbsence',
-    name:'NewAbsenceView',
-    component: NewAbsenceView
+    name:'NewAbsenceModal',
+    component: NewAbsenceModal
   }
 ]
 
