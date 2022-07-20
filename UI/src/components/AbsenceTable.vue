@@ -12,8 +12,10 @@
       <tbody>
       <tr v-for="name in names">
         <th class="nameColumn" scope="row">{{ name.firstName }} {{ name.lastName }}</th>
-        <td v-for="date in tableDates" :class="{todayMiddleRow: isToday(date), todayLastRow: isTodayLast(date,name)}">
-          <div class="color" v-show="hasAbsences(date, name.id)"></div>
+        <td v-for="date in tableDates" :class="{todayMiddleRow: isToday(date), todayLastRow: isTodayLast(date,name), weekend: isWeekend(date)}">
+          <div class="color" v-show="hasAbsences(date, name.id)">
+            <h5  class="absenceType">{{currentAbsenceType}}</h5>
+          </div>
         </td>
       </tr>
       </tbody>
@@ -29,7 +31,8 @@ export default {
     return {
       names: {},
       absences: {},
-      tableDates: []
+      tableDates: [],
+      currentAbsenceType:""
     }
   },
   created() {
@@ -103,6 +106,8 @@ export default {
         let endDate = this.parseDate(absence.absenceEnd);
 
         if (startDate.valueOf() <= date.valueOf() && endDate.valueOf() >= date.valueOf() && absence.userId === id) {
+          this.currentAbsenceType = absence.absenceType
+          console.log(this.currentAbsenceType)
           return true;
         }
       }
@@ -114,7 +119,6 @@ export default {
       let todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
       if (date.valueOf() === todayDate.valueOf()) {
-        console.log('today')
         return true;
       }
       return false;
@@ -125,11 +129,14 @@ export default {
       let todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
       if (this.names.at(-1) === name && date.valueOf() === todayDate.valueOf()) {
-        console.log('todaylast')
-        console.log(name)
         return true;
       }
       return false;
+    },
+    isWeekend: function (date) {
+      if (date.day === "SU" || date.day === "SA") {
+        return true;
+      }
     }
   }
 }
@@ -141,12 +148,14 @@ export default {
   background-color: #f1eea1;
   min-height: 100%;
   min-width: 100%;
+  opacity: 0.5;
 }
 
 td {
   margin: 0;
   padding: 0;
   min-width: 50px;
+  max-width: 50px;
   height: 50px;
 }
 
@@ -191,6 +200,9 @@ th {
 
 .dayOpacity {
   opacity: 1;
+}
+.weekend {
+  background-color: rgba(0,0,0,0.05);
 }
 
 </style>
