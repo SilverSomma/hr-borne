@@ -135,13 +135,13 @@ export default {
 
 .btn-primary {
   background-color: #EB5E00;
-  font-family:Open Sans;
+  font-family:Open Sans,serif;
 }
 
 
 .form-check {
   color: #EB5E00;
-  font-family:Open Sans
+  font-family:Open Sans,serif
 
 }
 .invisible {
