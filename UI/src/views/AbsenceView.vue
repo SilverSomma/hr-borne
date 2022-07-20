@@ -1,6 +1,7 @@
 <template>
 <div>
 <AbsenceTable/>
+  <h1>HELLO</h1>
 </div>
 </template>
 
