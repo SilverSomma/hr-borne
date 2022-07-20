@@ -19,7 +19,7 @@ const routes = [
   },
   {
     path:'/newAbsence',
-    name:'NewAbsenceModal',
+    name:'NewAbsenceView',
     component: NewAbsenceModal
   }
 ]

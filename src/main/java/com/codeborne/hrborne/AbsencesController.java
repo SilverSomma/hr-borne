@@ -31,7 +31,7 @@ public class AbsencesController {
 
     @PutMapping ("/newAbsence")
     @CrossOrigin(origins = "http://localhost:8081")
-    public void saveAbsence (Absences absences ) {
-        absenceRepository.saveAbsence(absences);
+    public void saveAbsence (Absences absences) {
+        AbsenceRepository.saveAbsence(absences);
     }
 }
